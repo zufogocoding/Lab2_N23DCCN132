@@ -9,6 +9,11 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());  
  
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log('✅ MongoDB Connected!'))
 .catch(err => console.error('❌ Connection error:', err));
