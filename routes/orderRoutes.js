@@ -116,7 +116,7 @@ router.post('/', async (req, res) => {
 
     const calculatedTotal = calculateTotal(items);
 
-    if (calculateTotal != totalAmount) {
+    if (calculateTotal !== totalAmount) {
         return res.status(400).json({
             success: false,
             message: 'totalAmount khong hop le',
