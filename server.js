@@ -10,9 +10,10 @@ app.use(cors());
 app.use(express.json());  
  
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./swagger');
+const YAML = require('yamljs');
+const swaggerDocument  = YAML.load('./openapi.yaml')
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log('✅ MongoDB Connected!'))
